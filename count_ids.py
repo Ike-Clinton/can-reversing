@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 # count_ids.py
+# By Ike Clinton
 # Python script to count CAN frame IDs from a log file
 # Can logs are of the form:
 # (timestamp) interface ID#FFFFFFFFFFFFFFFF
@@ -36,5 +37,3 @@ with open(args.file, 'r') as myfile:
 c = Counter(l.strip().split()[2][0:3] for l in text[0:len(text)-1])
 for x in c.most_common():
 	print(x)
-
-
