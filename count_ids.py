@@ -12,9 +12,16 @@
 # (1436509053.650713) vcan0 19E#6FE1CB7DE2218456
 import argparse
 from collections import Counter
+import sys
+
+class MyParser(argparse.ArgumentParser):
+	def error(sef, message):
+		sys.stderr.write('error: %s\n' % message)
+		self.print_help()
+		sys.exit(2)
 
 # Create argparser object to add command line args and help option
-parser = argparse.ArgumentParser(
+parser = MyParser(
 	description = 'This program takes in a a CAN data log file as input and prints'
 	+ ' the unique can IDs that it finds',
 	epilog = '',
@@ -24,10 +31,16 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-i", action = "store", dest="file",
 					help = "log file to read in")
 
+if len(sys.argv)==1:
+	parser.print_help()
+	sys.exit(1)
+
 # Split and process arguments into "args"
 args = parser.parse_args()
 
 # Open the file as read only, read the lines into text
+if args.file == '':
+	sys.exit(1)
 with open(args.file, 'r') as myfile:
 	text = myfile.readlines()
 
@@ -36,4 +49,4 @@ with open(args.file, 'r') as myfile:
 # Finally, use most_common() to display them decreasing order
 c = Counter(l.strip().split()[2][0:3] for l in text[0:len(text)-1])
 for x in c.most_common():
-	print(x)
+	print(x[0])

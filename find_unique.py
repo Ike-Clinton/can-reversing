@@ -17,7 +17,7 @@ import os
 from collections import Counter
 
 # Create regex to match log files
-logpattern = re.compile("*\.log")
+logpattern = re.compile("[a-zA-Z0-9]\_*\.log")
 
 # Create argparser object to add command line args and help option
 parser = argparse.ArgumentParser(
@@ -27,17 +27,18 @@ parser = argparse.ArgumentParser(
 	add_help = True)
 
 # Add a "-i" argument to receive a filename
-parser.add_argument("-i", action = "store", dest="file",
+parser.add_argument("-f", "--file", action = "store", nargs = 1,  dest="file",
 					help = "log file to read in")
 
 # Add a "-d" argument to receive a filename
-parser.add_argument("-d", action = "store_const", dest="directory",
+parser.add_argument("-d", action = "store_const", const=lambda:'analyze_dir', dest="dir",
 					help = "directory containing log files")
 
 # Split and process arguments into "args"
 args = parser.parse_args()
 
 def analyze_file():
+	print("Entering analyze file")
 	# Open the file as read only, read the lines into text
 	with open(args.file, 'r') as myfile:
 		text = myfile.readlines()
@@ -51,8 +52,12 @@ def analyze_file():
 
 def analyze_dir():
 	# loop through files in the given directory
-	for fn in os.listdir(directory):
+	for fn in os.listdir(dir):
 		if os.path.isfile(fn) and pattern.match(fn.filename):
 			# Open the file as read only, read the lines into text
 			with open(args.file, 'r') as myfile:
-			text = myfile.readlines()
+				text = myfile.readlines()
+				# Same as before
+				c = Counter(l.strip().split()[2][0:3] for l in text[0:len(text)-1])
+				for x in c.most_common():
+					print(x)
