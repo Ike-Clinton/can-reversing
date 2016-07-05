@@ -63,4 +63,4 @@ with open(args.file, 'r') as myfile:
 # Finally, use most_common() to display them decreasing order
 c = Counter(l.strip().split()[2][0:3] for l in text[0:len(text)-1])
 for x in c.most_common():
-	print(x[0])
+	print(x)
