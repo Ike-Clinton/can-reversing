@@ -15,10 +15,10 @@ from collections import Counter
 import sys
 
 class MyParser(argparse.ArgumentParser):
-	def error(sef, message):
-		sys.stderr.write('error: %s\n' % message)
-		self.print_help()
-		sys.exit(2)
+    def error(self, message):
+        sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit(2)
 
 # Create argparser object to add command line args and help option
 parser = MyParser(
