@@ -12,8 +12,11 @@
 # (1436509053.650713) vcan0 19E#6FE1CB7DE2218456
 import argparse
 from collections import Counter
+import os.path
 import sys
 
+# Override Argument parser to throw error and generate help message
+# if undefined args are passed
 class MyParser(argparse.ArgumentParser):
     def error(self, message):
         sys.stderr.write('error: %s\n' % message)
@@ -31,6 +34,7 @@ parser = MyParser(
 parser.add_argument("-i", action = "store", dest="file",
 					help = "log file to read in")
 
+# Print help if no args are supplied
 if len(sys.argv)==1:
 	parser.print_help()
 	sys.exit(1)
@@ -40,7 +44,15 @@ args = parser.parse_args()
 
 # Open the file as read only, read the lines into text
 if args.file == '':
+	print("ERROR: File name must not be blank")
+	parser.print_help()
 	sys.exit(1)
+
+if os.path.isfile(args.file) == False:
+	print("ERROR: File does not exist")
+	parser.print_help()
+	sys.exit(1)
+
 with open(args.file, 'r') as myfile:
 	text = myfile.readlines()
 
