@@ -42,17 +42,19 @@ if len(sys.argv)==1:
 # Split and process arguments into "args"
 args = parser.parse_args()
 
-# Open the file as read only, read the lines into text
+# Check that filename is not blank
 if args.file == '':
 	print("ERROR: File name must not be blank")
 	parser.print_help()
 	sys.exit(1)
 
+# Make sure file exists
 if os.path.isfile(args.file) == False:
 	print("ERROR: File does not exist")
 	parser.print_help()
 	sys.exit(1)
 
+# Open the file as read only, read the lines into text
 with open(args.file, 'r') as myfile:
 	text = myfile.readlines()
 
