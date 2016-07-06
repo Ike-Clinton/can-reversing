@@ -1,5 +1,6 @@
 # can-reversing
-Repo for python CAN capture file reverse engineering
+A collection of python and bash utilities to aid in the reverse-engineering
+process of identifying and understanding CAN bus implementations in vehicles.
 
 ## Usage Examples
 
