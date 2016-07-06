@@ -7,13 +7,15 @@ Repo for python CAN capture file reverse engineering
 Use the provided "make_vcan0.sh" script to setup a virtual CAN
 interface for testing. 
 
-``` sudo ./make_vcan0.sh
-
+```bash
+sudo ./make_vcan0.sh
+```
 You can then do things like:
 
-``` candump vcan0
-
-``` cansend vcan0 123#FFFFFFFF
+```bash
+candump vcan0
+cansend vcan0 123#FFFFFFFF
+```
 
 To test out that your can-utils are working correctly
 
