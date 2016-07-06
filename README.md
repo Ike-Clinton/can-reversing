@@ -17,7 +17,7 @@ candump vcan0
 cansend vcan0 123#FFFFFFFF
 ```
 
-To test out that your can-utils are working correctly
+to test out that your can-utils are working correctly.
 
 ### Send a list of CAN frames across an interface
 Useful for replaying CAN frames, use the provided send_list.sh
@@ -26,7 +26,9 @@ script to send a list of frames in the format:
 ID#DATA
 
 Example: 
-``` ./send_list.sh replays/headlight_indicator_toggle.txt
+```bash
+ ./send_list.sh replays/headlight_indicator_toggle.txt
+```
 
 Modify the script if you want it to send across vcan0 instead of can0
 
