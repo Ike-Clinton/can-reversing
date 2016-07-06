@@ -33,6 +33,6 @@ Example:
 Modify the script if you want it to send across vcan0 instead of can0
 
 ### Count Frame IDs in a log file
-This python script parses a log file given by CANdump
+The python script "count_ids.py" parses a log file given by CANdump
 and will tell you the frequency of all CAN IDs present in
 the log file
