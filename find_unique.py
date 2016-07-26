@@ -2,15 +2,17 @@
 # find_unique.py
 # By Ike Clinton
 
-# Python script to count CAN frame IDs from a log file
+# Python script to show unique frame IDs
+# and unique frames given two log files
 # Can logs are of the form:
 # (timestamp) interface ID#FFFFFFFFFFFFFFFF
 # Where timestamp is of the form: 0000000000.000000
 # Where interface is usually one of vcan0 or can0
-# Where frame ID is 3 hex chars: FFF
+# Where frame ID is 3 hex chars: 0xFFF
 # and the data length is up to 8 bytes in hex following a pound sign
 # Example:
 # (1436509053.650713) vcan0 19E#6FE1CB7DE2218456
+
 import argparse
 import re
 import os
@@ -61,3 +63,8 @@ def analyze_dir():
 				c = Counter(l.strip().split()[2][0:3] for l in text[0:len(text)-1])
 				for x in c.most_common():
 					print(x)
+
+
+
+
+
