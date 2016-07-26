@@ -1,0 +1,9 @@
+NOTE: These tests were performed with the following procedure:
+
+1. Start a candump log on a quiet CAN bus "candump -l ...."
+2. Start a stopwatch
+3. Immediately insert key into ignition and turn, starting vehicle
+4. Once the stopwatch hits 5 seconds, hit control+c to stop logging
+5. Turn off car, allow bus to become quiet again
+6. Log files are named run_#_5s.log where # is the number of test runs
+In this case we performed 10 runs of this sequence.
